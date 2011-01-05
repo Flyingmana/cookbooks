@@ -35,6 +35,7 @@ script "PEAR: install packages" do
 	pear install pdepend/PHP_Depend-beta
 	pear install xplib/PHP_CodeSniffer_Standards_Ezc-beta
 	pear install arbit/PHP_CodeSniffer_Standards_Arbit-beta
+	pear install arbit/PHPillow-beta
 	pear install phing/phing
 	pear install pecl/xdebug
 	pear install pdepend/PHP_Depend_Log_Arbit
