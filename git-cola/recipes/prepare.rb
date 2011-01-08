@@ -1,0 +1,5 @@
+package "git-core"
+package "python"
+package "python-qt4"
+package "python-pyinotify"
+package "pyqt4-dev-tools"
