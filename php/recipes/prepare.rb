@@ -12,5 +12,5 @@ package "help2man"
 package "autoconf"
 package "automake"
 
-package "libjpeg8-dev"
+include_recipe "libjpeg::install"
 package "libpng12-dev"

@@ -1,5 +1,15 @@
 include_recipe "php::prepare"
 
+# seems to add an \n
+php_installed_version = `which php >> /dev/null && php -v|grep #{node["php"][:version]}|awk '{ print substr($2,1,5) }'`
+
+php_already_installed = (php_installed_version != "")
+
+
+if !node["php"][:reinstall] && php_already_installed
+  return
+end
+
 remote_file "/tmp/php-#{node["php"][:version]}.tgz" do
   source "http://www.php.net/get/php-#{node["php"][:version]}.tar.gz/from/www.php.net/mirror"
   checksum node["php"][:checksum]
@@ -32,6 +42,7 @@ php_exts << "--with-pdo-mysql=mysqlnd"
 php_exts << "--with-curl"
 php_exts << "--with-tidy"
 php_exts << "--enable-sockets"
+
   
 execute "PHP: ./configure" do
 
