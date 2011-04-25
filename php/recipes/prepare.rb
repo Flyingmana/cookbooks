@@ -1,3 +1,5 @@
+include_recipe "helper::package_update"
+
 package "libevent-dev"
 package "openssl"
 package "libssl-dev"

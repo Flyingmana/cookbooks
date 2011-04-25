@@ -7,3 +7,5 @@ recipe "php::prepare", "Install needed packages and creates prequesites like use
 recipe "php::pear", "Installs required PEAR packages"
 supports 'ubuntu'
 depends "libjpeg"
+depends "helper"
+
