@@ -37,6 +37,7 @@ script "PEAR: install packages" do
 	pear install -f pear.arbitracker.org/PHPillow-beta
 	pear install -f pear.phing.info/phing
 	pear install -f pecl.php.net/xdebug
+	pear install -f pecl.php.net/apc
 	pear install -f pear.pdepend.org/PHP_Depend_Log_Arbit
 	pear install -f PHP_CodeSniffer
 	pear install -f pearhub.org/FluentDOM
@@ -44,7 +45,7 @@ script "PEAR: install packages" do
   EOH
 end
 
-
+# install of xdebug and apc seems not to work till now
 
 
 execute "PEAR: upgrade all packages" do

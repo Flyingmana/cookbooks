@@ -40,7 +40,11 @@ php_exts << "--with-mysqli=mysqlnd"
 php_exts << "--with-pdo-mysql=mysqlnd"
 #php_exts << "--with-pgsql"
 php_exts << "--with-curl"
-php_exts << "--with-tidy"
+php_exts << "--with-xsl"
+php_exts << "--with-xsl"
+php_exts << "--with-mcrypt"
+php_exts << "--enable-sockets"
+php_exts << "--enable-soap"
 php_exts << "--enable-sockets"
 
   
@@ -59,3 +63,15 @@ execute "PHP: make, make install" do
   environment "HOME" => "/root"
   command "make && make install"
 end
+
+
+template "/usr/local/etc/php.ini" do
+  source "php.ini.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  variables(
+  )
+end
+
+

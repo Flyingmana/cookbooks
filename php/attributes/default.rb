@@ -1,7 +1,7 @@
 default["php"] = {}
-default["php"][:version] = "5.3.5"
+default["php"][:version] = "5.3.8"
 #sha256 hash
-default["php"][:checksum] = "95474df979efbf2b1a298998fe9954200f59048681817a97eb18415346fb6ca4"
+default["php"][:checksum] = "bd175282260d49932499da26e5ae8d81e8e54123ae22e16ffc96c9edee8e8f0f"
 default["php"][:prefix] = "/usr/local"
 default["php"][:displayerrors] = false
 default["php"][:logerrors] = true
