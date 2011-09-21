@@ -36,9 +36,34 @@ end
 
 
 
-execute "yaws: permissions" do
-  command "chown -R www-data:www-data /usr/local/var/lib/www-data"
+cookbook_file "/tmp/yaws_404_to_index_php.erl" do
+  source "yaws_404_to_index_php.erl" 
+  mode "0644"
 end
+
+execute "yaws: compile 404 redirect module" do
+  cwd "/usr/local/lib"
+  command "sudo erlc -o /var/yaws/ebin  /tmp/yaws_404_to_index_php.erl"
+end
+
+directory "/usr/local/var/yaws/www_default" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+  recursive true
+end
+
+cookbook_file "/usr/local/var/yaws/www_default/index.html" do
+  source "www_default.html" 
+  mode "0644"
+end
+cookbook_file "/usr/local/var/yaws/www_default/index.php" do
+  source "www_default.php" 
+  mode "0644"
+end
+
+
 
 script "yaws: permissions" do
   interpreter "bash"
@@ -47,10 +72,23 @@ script "yaws: permissions" do
   code <<-EOH
   mkdir /usr/local/var/lib/www-data
 	chown -R www-data:www-data /usr/local/var/lib/www-data
+	chown -R www-data:www-data /usr/local/var/yaws
 	chown -R www-data:www-data /var/yaws 
 	chown -R www-data:www-data /var/log/yaws/
 	chown -R www-data:www-data /usr/local/lib/yaws
   EOH
+end
+
+
+
+
+template "/etc/yaws/yaws.conf" do
+  source "yaws.conf.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  variables(
+  )
 end
 
 
@@ -86,10 +124,11 @@ esac
 exit 0'
 end
 
-
 execute "yaws: update run level" do
   command "update-rc.d yaws defaults"
 end
+
+
 
 
 
