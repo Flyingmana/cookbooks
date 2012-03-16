@@ -42,11 +42,15 @@ php_exts << "--with-pdo-mysql=mysqlnd"
 #php_exts << "--with-pgsql"
 php_exts << "--with-curl"
 php_exts << "--with-xsl"
-php_exts << "--with-xsl"
 php_exts << "--with-mcrypt"
 php_exts << "--enable-sockets"
 php_exts << "--enable-soap"
-php_exts << "--enable-sockets"
+php_exts << "--with-gmp"
+php_exts << "--enable-bcmath"
+php_exts << "--with-ldap"
+php_exts << "--with-bz2"
+php_exts << "--enable-intl"
+php_exts << "--enable-zip"
 
   
 execute "PHP: ./configure" do
