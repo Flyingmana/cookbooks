@@ -29,6 +29,7 @@ php_opts << "--with-pear=#{node["php"][:prefix]}/pear"
 php_exts = []
 php_exts << "--with-gd"
 php_exts << "--with-zlib"
+php_exts << "--with-bz2"
 php_exts << "--with-jpeg-dir=/usr/local/lib/"
 php_exts << "--enable-exif"
 php_exts << "--enable-mbstring"
