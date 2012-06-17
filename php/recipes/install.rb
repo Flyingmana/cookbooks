@@ -12,7 +12,7 @@ end
 
 remote_file "/tmp/php-#{node["php"][:version]}.tgz" do
   source "http://www.php.net/get/php-#{node["php"][:version]}.tar.gz/from/www.php.net/mirror"
-  checksum node["php"][:checksum]
+  #checksum node["php"][:checksum]
 end
 
 execute "PHP: unpack" do
