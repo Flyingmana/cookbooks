@@ -29,7 +29,7 @@ end
 user "www-data" do
   comment "Yaws Administrator"
   gid "www-data"
-  home "/usr/local/var/lib/www-data"
+  home "/usr/local/var/yaws"
   shell "/bin/bash"
   system true
 end
@@ -108,12 +108,12 @@ file "/etc/init.d/yaws" do
 case "$1" in
   start)
     echo "Starting yaws "
-    cd /usr/local/var/lib/www-data
-    YAWSHOME=/usr/local/var/lib/www-data privbind -u www-data /usr/local/bin/yaws --daemon --heart
+    cd /usr/local/var/yaws
+    YAWSHOME=/usr/local/var/yaws privbind -u www-data /usr/local/bin/yaws --daemon --heart
     ;;
   stop)
     echo "Stopping yaws"
-    YAWSHOME=/usr/local/var/lib/www-data /usr/local/bin/yaws --stop
+    YAWSHOME=/usr/local/var/yaws /usr/local/bin/yaws --stop
     ;;
   *)
     echo "Usage: /etc/init.d/yaws {start|stop}"
