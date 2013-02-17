@@ -5,4 +5,5 @@ default["php"][:version] = "5.3.14"
 default["php"][:prefix] = "/usr/local"
 default["php"][:displayerrors] = false
 default["php"][:logerrors] = true
+default["php"][:sessionautostart] = false
 default["php"][:reinstall] = false

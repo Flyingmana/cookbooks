@@ -92,6 +92,15 @@ template "/etc/yaws/yaws.conf" do
 end
 
 
+directory "/etc/yaws/conf.d" do
+  owner "root"
+  group "root"
+  mode "0644"
+  action :create
+  recursive true
+end
+
+
 file "/etc/init.d/yaws" do
   owner "root"
   group "root"
