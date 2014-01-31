@@ -1,0 +1,18 @@
+{
+    "name": "vagrant-dev",
+    "default_attributes": { },
+    "override_attributes": { },
+    "json_class": "Chef::Role",
+    "description": "Install anything needed on our default vagrant dev box.",
+    "chef_type": "role",
+    "run_list": [
+        "recipe[php::install]",
+        "recipe[php::pear]",
+        "recipe[yaws::install]",
+        "recipe[mysql::install]",
+        "recipe[couchdb::install]",
+        "recipe[couchdb::configure-dev]",
+        "recipe[yaws::start]",
+        "recipe[couchdb::start]"
+    ]
+}

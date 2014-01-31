@@ -1,0 +1,18 @@
+{
+    "name": "workplace1-dev-box",
+    "default_attributes": { },
+    "override_attributes": { },
+    "json_class": "Chef::Role",
+    "description": "Install anything needed in the workplace1 dev box.",
+    "chef_type": "role",
+    "run_list": [
+        "recipe[php::install]",
+        "recipe[php::pear]",
+        "recipe[workplace1::packagesource]",
+        "recipe[workplace1::packages]",
+        "recipe[workplace1::mysql]",
+        "recipe[nginx::install]",
+        "recipe[mailcatcher::install]",
+        "recipe[munin::install]"
+    ]
+}

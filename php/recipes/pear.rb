@@ -28,24 +28,23 @@ script "PEAR: install packages" do
   user "root"
   cwd "/tmp"
   code <<-EOH
-	pear install -f phpDocumentor
-	pear install -f pear.phpunit.de/PHPUnit
-	pear install -f pear.phpunit.de/phploc
-	pear install -f pear.pdepend.org/PHP_Depend-beta
-	pear install -f pear.xplib.de/PHP_CodeSniffer_Standards_Ezc-beta
-	pear install -f pear.arbitracker.org/PHP_CodeSniffer_Standards_Arbit-beta
-	pear install -f pear.arbitracker.org/PHPillow-beta
-	pear install -f pear.phing.info/phing
+    #pear config-set php_ini /usr/local/etc/php/custom.ini
 	pear install -f pecl.php.net/xdebug
-	pear install -f pecl.php.net/apc
-	pear install -f pear.pdepend.org/PHP_Depend_Log_Arbit
-	pear install -f PHP_CodeSniffer
-	pear install -f pearhub.org/FluentDOM
-	pear install -f pear.netpirates.net/Autoload
   EOH
 end
 
 # install of xdebug and apc seems not to work till now
+
+
+script "PECL: install packages" do
+  interpreter "bash"
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+    #pear config-set php_ini /usr/local/etc/php/custom.ini
+	pecl install -f ssh2-beta
+  EOH
+end
 
 
 execute "PEAR: upgrade all packages" do

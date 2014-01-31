@@ -7,6 +7,7 @@ php_already_installed = (php_installed_version != "")
 
 
 if !node["php"][:reinstall] && php_already_installed
+  Chef::Log.info('php was already installed')
   return
 end
 
@@ -25,12 +26,16 @@ php_opts << "--with-config-file-path=#{node["php"][:prefix]}/etc"
 php_opts << "--with-config-file-scan-dir=#{node["php"][:prefix]}/etc/php"
 php_opts << "--prefix=#{node["php"][:prefix]}"
 php_opts << "--with-pear=#{node["php"][:prefix]}/pear"
+php_opts << "--enable-fpm"
 
 php_exts = []
 php_exts << "--with-gd"
 php_exts << "--with-zlib"
 php_exts << "--with-bz2"
 php_exts << "--with-jpeg-dir=/usr/local/lib/"
+php_exts << "--with-freetype"
+php_exts << "--with-freetype-dir=/usr/local/lib"
+php_exts << "--enable-gd-native-ttf"
 php_exts << "--enable-exif"
 php_exts << "--enable-mbstring"
 php_exts << "--enable-pcntl"
@@ -51,8 +56,9 @@ php_exts << "--with-ldap"
 php_exts << "--with-bz2"
 php_exts << "--enable-intl"
 php_exts << "--enable-zip"
+php_exts << "--with-gettext"
 
-  
+
 execute "PHP: ./configure" do
 
   cwd "/tmp/php-#{node["php"][:version]}"
@@ -63,7 +69,7 @@ execute "PHP: ./configure" do
 end
 
 
-execute "PHP: make, make install" do
+execute "PHP: make -j`nproc`, make install" do
   cwd "/tmp/php-#{node["php"][:version]}"
   environment "HOME" => "/root"
   command "make && make install"
@@ -79,4 +85,57 @@ template "/usr/local/etc/php.ini" do
   )
 end
 
+template "/usr/local/etc/php-fpm.conf" do
+  source "php-fpm.ini.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  variables(
+  )
+end
 
+
+directory "/usr/local/etc/php" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+  recursive true
+end
+directory "/usr/local/etc/fpm.d" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+  recursive true
+end
+
+template "/usr/local/etc/php/custom.ini" do
+  source "config.d/custom.ini.erb"
+  mode 0644
+  owner "root"
+  group "root"
+end
+
+
+template "/usr/local/etc/fpm.d/custom.conf" do
+  source "fpm.d/custom.ini.erb"
+  mode 0644
+  owner "root"
+  group "root"
+end
+
+
+execute "set /etc/init.d/php-fpm" do
+  cwd "/tmp/php-#{node["php"][:version]}"
+  command "sudo cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm"
+end
+
+execute "set /etc/init.d/php-fpm" do
+  cwd "/tmp/php-#{node["php"][:version]}"
+  command "sudo chmod u+x /etc/init.d/php-fpm"
+end
+
+execute "php-fpm: update run level" do
+  command "sudo update-rc.d php-fpm defaults"
+end

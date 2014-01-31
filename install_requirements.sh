@@ -10,6 +10,8 @@ sudo ruby setup.rb --no-format-executable
 
 sudo gem install chef --no-ri --no-rdoc
 sudo gem install ohai
+sudo gem install librarian
+sudo gem install knife-solo
 
 sudo ln -s /var/lib/gems/1.8/bin/chef-solo /usr/bin/chef-solo
 

@@ -1,0 +1,32 @@
+#! /bin/sh
+# /etc/init.d/mysql
+#
+
+# Some things that run always
+# touch /var/lock/blah
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+start)
+echo -n "Starting mysql: "
+/usr/local/bin/mysqld --explicit-defaults-for-timestamp
+echo -n "not implemented yet"
+echo "."
+;;
+stop)
+echo -n "Stopping mysql: "
+echo -n "not implemented yet"
+echo "."
+;;
+reload)
+echo -n "Reloading mysql: "
+echo -n "not implemented yet"
+echo "."
+;;
+*)
+echo "Usage: /etc/init.d/mysql {start|stop|reload}"
+exit 1
+;;
+esac
+
+exit 0'

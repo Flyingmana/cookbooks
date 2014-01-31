@@ -1,7 +1,7 @@
 default["couchdb"] = {}
-default["couchdb"][:version] = "1.1.1"
+default["couchdb"][:version] = "1.3.1"
 #sha256 hash
-default["couchdb"][:checksum] = "9d6592aacd4bc139f8c1ccb0ed80f30021cee50eb7f8a1feddf46b6eb963891c"
+#default["couchdb"][:checksum] = "08432165e72fa55e128e90d34b5b5e2d3b9af228fa2b30d3a3fa70a88a3c6498"
 default["couchdb"][:user] = "couchdb"
 default["couchdb"][:group] = "couchdb"
 default["couchdb"][:logerrors] = true

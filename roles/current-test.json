@@ -1,0 +1,11 @@
+{
+    "name": "current-test",
+    "default_attributes": { },
+    "override_attributes": { },
+    "json_class": "Chef::Role",
+    "description": "execute scripts chosen for test",
+    "chef_type": "role",
+    "run_list": [
+        "recipe[mysql::install]"
+    ]
+}

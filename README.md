@@ -23,3 +23,15 @@ Tasks need to be done
 
 - make the costumization of compile options possible
 - create a webserver interface (some general tasks are equal for all webservers)
+
+some execution notes
+====================
+
+ ```
+ sudo chef-solo -o 'role[desktop]'
+ ```
+
+ some notes to librarian
+ =======================
+
+ this is a ruby tool for fetching dependencies like other cookbooks

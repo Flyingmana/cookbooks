@@ -1,0 +1,17 @@
+{
+    "name": "full-web",
+    "default_attributes": { },
+    "override_attributes": { },
+    "json_class": "Chef::Role",
+    "description": "Install anything which can be usefully on a webserver.",
+    "chef_type": "role",
+    "run_list": [
+        "recipe[php::install]",
+        "recipe[php::pear]",
+        "recipe[yaws::install]",
+        "recipe[couchdb::install]",
+        "recipe[couchdb::configure-dev]",
+        "recipe[yaws::start]",
+        "recipe[couchdb::start]"
+    ]
+}
