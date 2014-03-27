@@ -6,6 +6,7 @@
     "description": "Install anything needed in the workplace1 dev box.",
     "chef_type": "role",
     "run_list": [
+        "recipe[nodejs::install]",
         "recipe[php::install]",
         "recipe[php::pear]",
         "recipe[workplace1::packagesource]",
