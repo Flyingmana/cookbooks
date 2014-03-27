@@ -72,7 +72,7 @@ end
 execute "PHP: make -j`nproc`, make install" do
   cwd "/tmp/php-#{node["php"][:version]}"
   environment "HOME" => "/root"
-  command "make && make install"
+  command "make -j`nproc` && make install"
 end
 
 
