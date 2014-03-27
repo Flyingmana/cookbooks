@@ -18,15 +18,20 @@ execute "apt-get update" do
 end
 
 execute "apt-get install nodejs" do
-  command "apt-get -t wheezy-backports install nodejs"
+  command "apt-get -y -t wheezy-backports install nodejs"
 end
 
 execute "apt-get install nodejs-legacy" do
-  command "apt-get -t wheezy-backports install nodejs-legacy"
+  command "apt-get -y -t wheezy-backports install nodejs-legacy"
 end
 
+
+#remote_file "/tmp/npmjs.install.sh" do
+#  source "https://www.npmjs.org/install.sh"
+#end
+
 execute "curl install npm" do
-  command "curl https://www.npmjs.org/install.sh | sudo sh"
+  command "curl https://www.npmjs.org/install.sh | sudo clean=no sh"
 end
 
 execute "curl install phantomjs" do
