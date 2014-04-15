@@ -9,10 +9,10 @@
         "recipe[nodejs::install]",
         "recipe[php::install]",
         "recipe[php::pear]",
+        "recipe[nginx::install]",
         "recipe[workplace1::packagesource]",
         "recipe[workplace1::packages]",
         "recipe[workplace1::mysql]",
-        "recipe[nginx::install]",
         "recipe[mailcatcher::install]",
         "recipe[munin::install]"
     ]
